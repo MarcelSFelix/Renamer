@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace Renamer
 {
-    public class Program
+    internal class Methods
     {
-        public static void Main(string[] args)
-        {
-
-        }
     }
 }
