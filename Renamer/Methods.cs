@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Renamer
 {
-    internal class Methods
+    public class Methods
     {
+
     }
 }
