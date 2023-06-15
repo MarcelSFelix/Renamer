@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -86,6 +87,37 @@ namespace Renamer
                     File.Move(oldFilePath, newFilePath);
                 }
                 Console.WriteLine("Prefix änderung erfolgreich durchgeführt.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Fehler beim Umbenennen der Bilder: " + ex.Message);
+            }
+        }
+        public static void zeroFunction(string directoryPath, string addOrDelete)
+        {
+            try
+            {
+                string[] imageFiles = Directory.GetFiles(directoryPath);
+                Console.WriteLine(imageFiles);
+                for (int i = 0; i < imageFiles.Length; i++)
+                {
+                    string oldFilePath = imageFiles[i];
+                    string fileName = Path.GetFileName(imageFiles[i]);
+                    if (addOrDelete == "add" | addOrDelete == "Add")
+                    {
+                        fileName = $"0{fileName}";
+                    }
+                    else
+                    {
+                        if (fileName.StartsWith("0"))
+                        {
+                            fileName = fileName.Substring(1);
+                        }
+                    }
+                    string newFilePath = Path.Combine(directoryPath, fileName);
+                    File.Move(oldFilePath, newFilePath);
+                }
+                Console.WriteLine("Nullen erfolgreich hinzugefügt/entfernt.");
             }
             catch (Exception ex)
             {
