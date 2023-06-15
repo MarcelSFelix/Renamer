@@ -123,6 +123,27 @@ namespace Renamer
                 Console.WriteLine("Fehler beim Umbenennen der Bilder: " + ex.Message);
             }
         }
+        public static string getNumberFromString(string numberString)
+        {
+            int firstNum = 0;
+            int lastNum = 0;
+            bool firstFound = true;
+
+            for (int i = 0; i < numberString.Length; i++)
+            {
+                if(firstFound && char.IsDigit(numberString[i]))
+                {
+                    firstNum = i;
+                    firstFound = false;
+                }
+                else if (!firstFound && !char.IsDigit(numberString[i]))
+                {
+                    lastNum = i - 1;
+                }
+            }
+            string value = numberString.Substring(firstNum,lastNum);
+            return numberString;
+        }
     }
 }
 
