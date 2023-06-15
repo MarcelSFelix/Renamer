@@ -22,14 +22,14 @@ namespace Renamer
                 switch (command)
                 {
                     case "cngsuf":
-                        Console.Write("Welche Suffix sollen geändert werden: ");
+                        Console.Write("Welches Suffix sollen geändert werden: ");
                         string sufCurrent = Console.ReadLine();
                         Console.Write("Wie soll das zukünftige Suffix heißen: ");
                         string sufFut = Console.ReadLine();
                         Methods.ChangeSuffix(path, sufCurrent, sufFut);
                         break;
                     case "cngpre":
-                        Console.Write("Welche Prefix sollen geändert werden: ");
+                        Console.Write("Welches Prefix sollen geändert werden: ");
                         string preCurrent = Console.ReadLine();
                         Console.Write("Wie soll das zukünftige Prefix heißen: ");
                         string preFut = Console.ReadLine();

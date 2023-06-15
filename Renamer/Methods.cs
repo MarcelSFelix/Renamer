@@ -29,9 +29,11 @@ namespace Renamer
             try
             {
                 string[] imageFiles = Directory.GetFiles(directoryPath, "*.jpg");
+                
 
                 for (int i = 0; i < imageFiles.Length; i++)
                 {
+                    string name = Path.GetFileName(imageFiles[i]);
                     string oldFilePath = imageFiles[i];
                     string newFileName = prefix + (i + 1) + ".jpg";
                     string newFilePath = Path.Combine(directoryPath, newFileName);
@@ -50,14 +52,16 @@ namespace Renamer
             try
             {
                 string pattern = ".txt";
-                string[] imageFiles = Directory.GetFiles(directoryPath, $"*{pattern}");
+                string[] imageFiles = Directory.GetFiles(directoryPath, $"*{oldSuffix}");
 
                 for (int i = 0; i < imageFiles.Length; i++)
                 {
+                    string fileName = Path.GetFileName(imageFiles[i]);
+                    
                     string oldFilePath = imageFiles[i];
-                    string newFilePath = imageFiles[i];
-                    newFilePath = newFilePath.Replace(oldSuffix, newSuffix);
+                    fileName = fileName.Replace(oldSuffix, newSuffix);
                     //string newFileName = prefix + (i + 1) + ".jpg";
+                    string newFilePath = Path.Combine(directoryPath, fileName);
                     //string newFilePath = Path.Combine(directoryPath, newFileName);
 
                     File.Move(oldFilePath, newFilePath);
