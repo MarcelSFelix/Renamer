@@ -23,12 +23,17 @@ namespace Renamer
                 {
                     case "cngsuf":
                         Console.Write("Welche Suffix sollen geändert werden: ");
-                        string cngCurrent = Console.ReadLine();
+                        string sufCurrent = Console.ReadLine();
                         Console.Write("Wie soll das zukünftige Suffix heißen: ");
-                        string cngFut = Console.ReadLine();
-                        Methods.ChangeSuffix(path, cngCurrent, cngFut);
+                        string sufFut = Console.ReadLine();
+                        Methods.ChangeSuffix(path, sufCurrent, sufFut);
                         break;
                     case "cngpre":
+                        Console.Write("Welche Prefix sollen geändert werden: ");
+                        string preCurrent = Console.ReadLine();
+                        Console.Write("Wie soll das zukünftige Prefix heißen: ");
+                        string preFut = Console.ReadLine();
+                        Methods.ChangeSuffix(path, preCurrent, preFut);
                         break;
                     case "delpre":
                         break;
