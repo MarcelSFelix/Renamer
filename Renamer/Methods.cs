@@ -8,6 +8,22 @@ namespace Renamer
 {
     public class Methods
     {
+        public static void commands()
+        {
+            string[] commands = { "", "cngpre - Change prefix",
+            "cngsuf - Change suffix",
+            "delpre - Deletze prefix",
+            "delsuf - Delete suffix",
+            "commands - Displays a list of all commands",
+            "stop - Stops the program"
+        };
+            Console.WriteLine("List of all commands");
+            foreach (string command in commands)
+            {
+                Console.WriteLine(command);
+            }
+            Console.WriteLine();
+        }
         public static void RenameImages(string directoryPath, string prefix)
         {
             try

@@ -40,6 +40,7 @@ namespace Renamer
                     case "delsuf":
                         break;
                     case "commands":
+                        Methods.commands();
                         break;
                     case "stop":
                     case "Stop":
