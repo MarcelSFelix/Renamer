@@ -30,7 +30,6 @@ namespace Renamer
             {
                 string[] imageFiles = Directory.GetFiles(directoryPath, "*.jpg");
                 
-
                 for (int i = 0; i < imageFiles.Length; i++)
                 {
                     string name = Path.GetFileName(imageFiles[i]);
