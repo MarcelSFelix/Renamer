@@ -13,7 +13,7 @@ namespace Renamer
         {
             string command = "";
             bool go = true;
-            string path = "C:/Users/jruebsam/source/repos/Renamer/Renamer/bin/Debug/net7.0/Testdata";
+            string path = "../../Debug/net7.0/Testdata";
 
             while (go) {
                 Console.Write("Welche Funktion soll genutzt werden: ");
