@@ -13,7 +13,7 @@ namespace Renamer
         {
             string command = "";
             bool go = true;
-
+            string path = "C:/Users/jruebsam/source/repos/Renamer/Renamer/bin/Debug/net7.0/Testdata";
 
             while (go) {
                 Console.Write("Welche Funktion soll genutzt werden: ");
@@ -22,10 +22,11 @@ namespace Renamer
                 switch (command)
                 {
                     case "cngsuf":
-                        Console.WriteLine("Welche Suffix sollen geändert werden: ");
+                        Console.Write("Welche Suffix sollen geändert werden: ");
                         string cngCurrent = Console.ReadLine();
-                        Console.WriteLine("Wie soll das zukünftige Suffix heißen: ");
+                        Console.Write("Wie soll das zukünftige Suffix heißen: ");
                         string cngFut = Console.ReadLine();
+                        Methods.ChangeSuffix(path, cngCurrent, cngFut);
                         break;
                     case "cngpre":
                         break;
