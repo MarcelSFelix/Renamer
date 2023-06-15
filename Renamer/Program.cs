@@ -44,6 +44,9 @@ namespace Renamer
                     case "stop":
                         go = false; 
                         break;
+                    default:
+                        Console.WriteLine("Unknown Command. Use command for more information.");
+                        break;
                 }
             } 
         }
