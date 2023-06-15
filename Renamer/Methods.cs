@@ -57,12 +57,9 @@ namespace Renamer
                 for (int i = 0; i < imageFiles.Length; i++)
                 {
                     string fileName = Path.GetFileName(imageFiles[i]);
-                    
                     string oldFilePath = imageFiles[i];
                     fileName = fileName.Replace(oldSuffix, newSuffix);
-                    //string newFileName = prefix + (i + 1) + ".jpg";
                     string newFilePath = Path.Combine(directoryPath, fileName);
-                    //string newFilePath = Path.Combine(directoryPath, newFileName);
 
                     File.Move(oldFilePath, newFilePath);
                 }
@@ -81,13 +78,12 @@ namespace Renamer
 
                 for (int i = 0; i < imageFiles.Length; i++)
                 {
-                        string oldFilePath = imageFiles[i];
-                        string newFilePath = imageFiles[i];
-                        newFilePath = newFilePath.Replace(oldPrefix, newPrefix);
-                        //string newFileName = prefix + (i + 1) + ".jpg";
-                        //string newFilePath = Path.Combine(directoryPath, newFileName);
+                    string fileName = Path.GetFileName(imageFiles[i]);
+                    string oldFilePath = imageFiles[i];
+                    fileName = fileName.Replace(oldPrefix, newPrefix);
+                    string newFilePath = Path.Combine(directoryPath, fileName);
 
-                        File.Move(oldFilePath, newFilePath);
+                    File.Move(oldFilePath, newFilePath);
                 }
                 Console.WriteLine("Prefix änderung erfolgreich durchgeführt.");
             }
