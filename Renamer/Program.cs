@@ -13,7 +13,7 @@ namespace Renamer
         {
             string command = "";
             bool go = true;
-            string path = "C:/Users/jruebsam/source/repos/Renamer/Renamer/bin/Debug/net7.0/Testdata";
+            string path = "C:/Users/marcel-steven.felix/source/repos/Renamer/Renamer/bin/Debug/net7.0/Testdata";
 
             while (go) {
                 Console.Write("Welche Funktion soll genutzt werden: ");
@@ -41,6 +41,11 @@ namespace Renamer
                         break;
                     case "commands":
                         Methods.commands();
+                        break;
+                    case "zero":
+                        Console.WriteLine("Add or delete?");
+                        string addOrDelete = Console.ReadLine();
+                        Methods.zeroFunction(path, addOrDelete);
                         break;
                     case "stop":
                     case "Stop":
