@@ -42,10 +42,11 @@ namespace Renamer
                     case "commands":
                         break;
                     case "stop":
+                    case "Stop":
                         go = false; 
                         break;
                     default:
-                        Console.WriteLine("Unknown Command. Use command for more information.");
+                        Console.WriteLine("Unknown Command. Write 'commands' for more information.");
                         break;
                 }
             } 
