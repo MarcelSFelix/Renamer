@@ -123,6 +123,33 @@ namespace Renamer
                 Console.WriteLine("Fehler beim Umbenennen der Bilder: " + ex.Message);
             }
         }
+        public static void leadZeros (string directoryPath, int length)
+        {
+            try
+            {
+                string[] imageFiles = Directory.GetFiles(directoryPath);
+
+                for (int i = 0; i < imageFiles.Length; i++)
+                {
+                    string oldFilePath = imageFiles[i];
+                    string fileName = Path.GetFileName(imageFiles[i]);
+
+                    string numString =  getNumberFromString(fileName, out int firstNum, out int lastNum);
+                    string newNumString = numString.PadLeft(length, '0');
+                    //fileName = fileName.Replace(numString, newNumString);
+                    fileName = fileName.Remove(firstNum, lastNum - firstNum);
+                    fileName = fileName.Insert(firstNum, newNumString);
+
+                    string newFilePath = Path.Combine(directoryPath, fileName);
+                    File.Move(oldFilePath, newFilePath);
+                }
+                Console.WriteLine("Führende Nullen erfolgreich hinzugefügt/entfernt.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Fehler beim Umbenennen der Bilder: " + ex.Message);
+            }
+        }
         public static string getNumberFromString(string numberString, out int firstNum, out int lastNum)
         {
             firstNum = 0;
@@ -138,11 +165,11 @@ namespace Renamer
                 }
                 else if (!firstFound && !char.IsDigit(numberString[i]))
                 {
-                    lastNum = i - 1;
+                    lastNum = i;
+                    break;
                 }
             }
-            string value = numberString.Substring(firstNum,lastNum);
-            return numberString;
+            return numberString.Substring(firstNum, lastNum-firstNum);
 
             //string test = getNumberFromString(fileName, out int firstNum, out int lastNum);
         }

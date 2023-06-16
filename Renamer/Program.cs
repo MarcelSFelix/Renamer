@@ -47,6 +47,10 @@ namespace Renamer
                         string addOrDelete = Console.ReadLine();
                         Methods.zeroFunction(path, addOrDelete);
                         break;
+                    case "ledzer":
+                        int.TryParse(Console.ReadLine(), out int length);
+                        Methods.leadZeros(path, length);
+                        break;
                     case "stop":
                     case "Stop":
                         go = false; 
