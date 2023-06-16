@@ -123,7 +123,7 @@ namespace Renamer
                 Console.WriteLine("Fehler beim Umbenennen der Bilder: " + ex.Message);
             }
         }
-        public static void leadZeros (string directoryPath, int length)
+        public static void LeadZeros (string directoryPath, int length)
         {
             try
             {
@@ -134,7 +134,7 @@ namespace Renamer
                     string oldFilePath = imageFiles[i];
                     string fileName = Path.GetFileName(imageFiles[i]);
 
-                    string numString =  getNumberFromString(fileName, out int firstNum, out int lastNum);
+                    string numString =  GetNumberFromString(fileName, out int firstNum, out int lastNum);
                     string newNumString = numString.PadLeft(length, '0');
                     //fileName = fileName.Replace(numString, newNumString);
                     fileName = fileName.Remove(firstNum, lastNum - firstNum);
@@ -150,7 +150,7 @@ namespace Renamer
                 Console.WriteLine("Fehler beim Umbenennen der Bilder: " + ex.Message);
             }
         }
-        public static string getNumberFromString(string numberString, out int firstNum, out int lastNum)
+        public static string GetNumberFromString(string numberString, out int firstNum, out int lastNum)
         {
             firstNum = 0;
             lastNum = 0;

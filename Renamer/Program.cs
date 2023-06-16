@@ -48,8 +48,13 @@ namespace Renamer
                         Methods.zeroFunction(path, addOrDelete);
                         break;
                     case "ledzer":
-                        int.TryParse(Console.ReadLine(), out int length);
-                        Methods.leadZeros(path, length);
+                        Console.Write("Padding (nur ganze Zahlen): ");
+                        if(!int.TryParse(Console.ReadLine(), out int length))
+                        {
+                            Console.WriteLine("Bitte ein Integer eingeben");
+                            break;
+                        }
+                        Methods.LeadZeros(path, length);
                         break;
                     case "stop":
                     case "Stop":
