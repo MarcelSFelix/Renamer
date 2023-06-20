@@ -19,7 +19,7 @@ namespace Renamer
                 Console.Write("Welche Funktion soll genutzt werden: ");
                 command = Console.ReadLine();
 
-                switch (command)
+                switch (command.ToLower())
                 {
                     case "cngsuf":
                         Console.Write("Welches Suffix sollen geändert werden: ");
@@ -33,7 +33,7 @@ namespace Renamer
                         string preCurrent = Console.ReadLine();
                         Console.Write("Wie soll das zukünftige Prefix heißen: ");
                         string preFut = Console.ReadLine();
-                        Methods.ChangeSuffix(path, preCurrent, preFut);
+                        Methods.ChangePrefix(path, preCurrent, preFut);
                         break;
                     case "delpre":
                         break;
@@ -56,8 +56,16 @@ namespace Renamer
                         }
                         Methods.LeadZeros(path, length);
                         break;
+                    case "movnum":
+                        Console.WriteLine("Soll ein Zahlenblock an den Anfang des Namens ('first') oder ans Ende ('last') geschoben werden: ");
+                            string mode = Console.ReadLine().ToLower();
+                            Methods.MoveNumbers(path, mode);
+                            break;
+                    case "undo":
+                        Methods.Undo();
+                        break;
+                    case "exit":
                     case "stop":
-                    case "Stop":
                         go = false; 
                         break;
                     default:
