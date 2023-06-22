@@ -245,6 +245,29 @@ namespace Renamer
 
             //string test = getNumberFromString(fileName, out int firstNum, out int lastNum);
         }
+
+        public static void DeletePrefix(string directoryPath, string prefixToDelete)
+        {
+            try
+            {
+                string[] allPaths = Directory.GetFiles(directoryPath);
+
+                foreach (string oldFilePath in allPaths)
+                {
+                    string fileName = Path.GetFileName(oldFilePath);
+                    string newFileName = fileName.Remove(0, prefixToDelete.Length);
+                    string newFilePath = Path.Combine(directoryPath, newFileName);
+
+                    File.Move(oldFilePath, newFilePath);
+                }
+
+                Console.WriteLine("Präfix wurde erfolgreich entfernt.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Fehler beim Umbenennen der Dateien:  " + ex.Message);
+            }
+        }
     }
 }
 
