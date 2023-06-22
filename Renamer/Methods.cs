@@ -29,28 +29,7 @@ namespace Renamer
             }
             Console.WriteLine();
         }
-        public static void RenameImages(string directoryPath, string prefix)
-        {
-            try
-            {
-                string[] imageFiles = Directory.GetFiles(directoryPath, "*.jpg");
-                
-                for (int i = 0; i < imageFiles.Length; i++)
-                {
-                    string name = Path.GetFileName(imageFiles[i]);
-                    string oldFilePath = imageFiles[i];
-                    string newFileName = prefix + (i + 1) + ".jpg";
-                    string newFilePath = Path.Combine(directoryPath, newFileName);
-
-                    File.Move(oldFilePath, newFilePath);
-                }
-                Console.WriteLine("Prefix änderung erfolgreich durchgeführt.");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Fehler beim Umbenennen der Dateien: " + ex.Message);
-            }
-        }
+        
         public static void ChangeSuffix(string directoryPath, string oldSuffix, string newSuffix)
         {
             history.Clear();
