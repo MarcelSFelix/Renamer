@@ -43,9 +43,19 @@ namespace Renamer
                         Methods.commands();
                         break;
                     case "zero":
+                        int amount = 0;
                         Console.WriteLine("Add or delete?");
-                        string addOrDelete = Console.ReadLine();
-                        Methods.zeroFunction(path, addOrDelete);
+                        string addOrDelete = Console.ReadLine().ToLower();
+                        if (addOrDelete == "delete")
+                        {
+                            Console.Write("Wie viele Nullen sollen gelöscht werden:");
+                            if (!int.TryParse(Console.ReadLine(), out int output)) 
+                            {
+                                Console.WriteLine("Keine zulässige Menge.");
+                                amount = output;
+                            }
+                        }
+                        Methods.zeroFunction(path, addOrDelete, amount);
                         break;
                     case "ledzer":
                         Console.Write("Padding (nur ganze Zahlen): ");
