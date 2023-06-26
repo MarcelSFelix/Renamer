@@ -36,6 +36,9 @@ namespace Renamer
                         Methods.ChangePrefix(path, preCurrent, preFut);
                         break;
                     case "delpre":
+                        Console.WriteLine("Welcher Präfix soll entfernt werden?");
+                        string deletablePrefix = Console.ReadLine();
+                        Methods.DeletePrefix(path, deletablePrefix);
                         break;
                     case "delsuf":
                         break;
