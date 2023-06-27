@@ -125,6 +125,7 @@ namespace Renamer
         }
         public static void LeadZeros (string directoryPath, int length)
         {
+            
             history.Clear();
             try
             {
@@ -132,19 +133,29 @@ namespace Renamer
 
                 for (int i = 0; i < allPaths.Length; i++)
                 {
+                    bool numCheck = false;
                     string oldFilePath = allPaths[i];
                     string fileName = Path.GetFileName(allPaths[i]);
-                    
+                    foreach (char c in fileName)
+                    {
+                        if (char.IsDigit(c)) 
+                        {
+                            numCheck= true;
+                            break;
+                        }
+                    }
+                    if (numCheck)
+                    {
+                        string numString = GetNumberFromString(fileName, out int firstNum, out int lastNum);
+                        string newNumString = numString.PadLeft(length, '0');
+                        //fileName = fileName.Replace(numString, newNumString);
+                        fileName = fileName.Remove(firstNum, lastNum - firstNum);
+                        fileName = fileName.Insert(firstNum, newNumString);
 
-                    string numString =  GetNumberFromString(fileName, out int firstNum, out int lastNum);
-                    string newNumString = numString.PadLeft(length, '0');
-                    //fileName = fileName.Replace(numString, newNumString);
-                    fileName = fileName.Remove(firstNum, lastNum - firstNum);
-                    fileName = fileName.Insert(firstNum, newNumString);
-
-                    string newFilePath = Path.Combine(directoryPath, fileName);
-                    File.Move(oldFilePath, newFilePath);
-                    history.Add((oldFilePath, newFilePath));
+                        string newFilePath = Path.Combine(directoryPath, fileName);
+                        File.Move(oldFilePath, newFilePath);
+                        history.Add((oldFilePath, newFilePath));
+                    }
                 }
                 Console.WriteLine("Führende Nullen erfolgreich hinzugefügt.");
             }
