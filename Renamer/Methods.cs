@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Renamer
@@ -271,6 +272,49 @@ namespace Renamer
                 Console.WriteLine("Fehler beim Umbenennen der Dateien:  " + ex.Message);
             }
         }
+
+        public static void Count(string directoryPath)
+        {
+            history.Clear();
+            try
+            {
+                string[] allPaths = Directory.GetFiles(directoryPath);
+                int fileCount = allPaths.Length;
+
+                // Determine the number of digits in the file count
+                int numDigits = fileCount >= 10 ? (int)Math.Log10(fileCount) + 1 : 1;
+
+                for (int i = 0; i < fileCount; i++)
+                {
+                    string fileName = Path.GetFileNameWithoutExtension(allPaths[i]);
+                    string extension = Path.GetExtension(allPaths[i]);
+                    string oldFilePath = allPaths[i];
+
+                    // Remove existing numbers from the filename
+                    string prefix = Regex.Replace(fileName, @"\d", string.Empty);
+
+                    // Increment the number based on the file count
+                    int number = i + 1;
+
+                    // Build the new filename with padded zeros
+                    string paddedNumber = number.ToString().PadLeft(numDigits, '0');
+                    string newFileName = prefix + paddedNumber + extension;
+                    string newFilePath = Path.Combine(directoryPath, newFileName);
+
+                    File.Move(oldFilePath, newFilePath);
+                    history.Add((oldFilePath, newFilePath));
+                }
+                Console.WriteLine("Numbered prefix change successfully performed.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error renaming files: " + ex.Message);
+            }
+        }
+
+
+
+
     }
 }
 
