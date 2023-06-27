@@ -18,7 +18,7 @@ namespace Renamer
             "delpre - Delete prefix",
             "delsuf - Delete suffix",
             "commands - Displays a list of all commands",
-            "ledzer - Add leading Zeros",
+            "leadzer - Add leading Zeros",
             "undo - Undo last operation",
             "stop - Stops the program"
         };
@@ -259,6 +259,30 @@ namespace Renamer
                 }
 
                 Console.WriteLine("Präfix wurde erfolgreich entfernt.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Fehler beim Umbenennen der Dateien:  " + ex.Message);
+            }
+        }
+
+        public static void DeleteSuffix(string directoryPath, string suffixToDelete)
+        {
+            try
+            {
+                string[] allPaths = Directory.GetFiles(directoryPath);
+
+                foreach (string oldFilePath in allPaths)
+                {
+                    string fileName = Path.GetFileName(oldFilePath);
+                    int suffixIndex = fileName.IndexOf(suffixToDelete);
+                    string newFileName = fileName.Remove(suffixIndex);
+                    string newFilePath = Path.Combine(directoryPath, newFileName);
+
+                    File.Move(oldFilePath, newFilePath);
+                }
+
+                Console.WriteLine("Suffix wurde erfolgreich entfernt.");
             }
             catch (Exception ex)
             {
