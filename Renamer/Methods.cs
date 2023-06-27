@@ -134,6 +134,7 @@ namespace Renamer
                 {
                     string oldFilePath = allPaths[i];
                     string fileName = Path.GetFileName(allPaths[i]);
+                    
 
                     string numString =  GetNumberFromString(fileName, out int firstNum, out int lastNum);
                     string newNumString = numString.PadLeft(length, '0');
