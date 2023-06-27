@@ -16,41 +16,44 @@ namespace Renamer
             string path = "../../Debug/net7.0/Testdata";
 
             while (go) {
-                Console.Write("Welche Funktion soll genutzt werden: ");
+                Console.Write("Welche Funktion soll genutzt werden: (\"commands\" um Commands zu sehen) ");
                 command = Console.ReadLine();
 
                 switch (command.ToLower())
                 {
+                    case "commands":
+                        Methods.commands();
+                        break;
+                    case "cngpre":
+                        Console.Write("Welches Präfix sollen geändert werden: ");
+                        string preCurrent = Console.ReadLine();
+                        Console.Write("Wie soll das zukünftige Prefix heißen: ");
+                        string preFut = Console.ReadLine();
+                        Methods.ChangePrefix(path, preCurrent, preFut);
+                        break;
                     case "cngsuf":
                         Console.Write("Welches Suffix sollen geändert werden: ");
                         string sufCurrent = Console.ReadLine();
                         Console.Write("Wie soll das zukünftige Suffix heißen: ");
                         string sufFut = Console.ReadLine();
                         Methods.ChangeSuffix(path, sufCurrent, sufFut);
-                        break;
-                    case "cngpre":
-                        Console.Write("Welches Prefix sollen geändert werden: ");
-                        string preCurrent = Console.ReadLine();
-                        Console.Write("Wie soll das zukünftige Prefix heißen: ");
-                        string preFut = Console.ReadLine();
-                        Methods.ChangePrefix(path, preCurrent, preFut);
-                        break;
+                        break; 
                     case "delpre":
                         Console.WriteLine("Welcher Präfix soll entfernt werden?");
                         string deletablePrefix = Console.ReadLine();
                         Methods.DeletePrefix(path, deletablePrefix);
                         break;
                     case "delsuf":
-                        break;
-                    case "commands":
-                        Methods.commands();
+                        Console.WriteLine("Welcher Suffix soll entfernt werden?");
+                        string deletableSuffix = Console.ReadLine();
+                        Methods.DeleteSuffix(path, deletableSuffix);
                         break;
                     case "zero":
-                        Console.WriteLine("Add or delete?");
+                        Console.WriteLine("Add or delete singular zero?");
                         string addOrDelete = Console.ReadLine();
                         Methods.zeroFunction(path, addOrDelete);
                         break;
-                    case "ledzer":
+                    case "leadzer":
                         Console.Write("Padding (nur ganze Zahlen): ");
                         if(!int.TryParse(Console.ReadLine(), out int length))
                         {
