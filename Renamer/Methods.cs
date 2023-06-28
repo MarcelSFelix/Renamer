@@ -165,10 +165,7 @@ namespace Renamer
                 Console.WriteLine("Fehler beim Umbenennen der Dateien: " + ex.Message);
             }
         }
-        public static void Enumerate(string directoryPath)
-        {
-            history.Clear();
-        }
+        
         public static void MoveNumbers(string directoryPath, string mode) 
         {
             history.Clear();
