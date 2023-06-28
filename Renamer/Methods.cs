@@ -80,27 +80,38 @@ namespace Renamer
                 Console.WriteLine("Fehler beim Umbenennen der Dateien: " + ex.Message);
             }
         }
-        public static void zeroFunction(string directoryPath, string addOrDelete)
+        public static void zeroFunction(string directoryPath, string addOrDelete, int amount)
         {
             history.Clear();
             try
             {
                 string[] allPaths = Directory.GetFiles(directoryPath);
-                Console.WriteLine(allPaths);
+                //Console.WriteLine(allPaths);
                 for (int i = 0; i < allPaths.Length; i++)
                 {
                     string oldFilePath = allPaths[i];
                     string fileName = Path.GetFileName(allPaths[i]);
-                    if (addOrDelete == "add" | addOrDelete == "Add")
+                    if (addOrDelete == "add")
                     {
                         fileName = $"0{fileName}";
                     }
                     else
                     {
-                        if (fileName.StartsWith("0"))
+                        int iterator = 0;
+                        for (int j = 0;i < fileName.Length;j++)
                         {
-                            fileName = fileName.Substring(1);
+                            if (fileName[j] == '0')
+                            {
+                                fileName = fileName.Remove(j,1);
+                                iterator++;   
+                            }
+                            if (iterator > 1 && fileName[j] != '0') break;
+                            if (iterator > amount) break;
                         }
+                        //if (fileName.StartsWith("0"))
+                        //{
+                        //    fileName = fileName.Substring(1);
+                        //}
                     }
                     string newFilePath = Path.Combine(directoryPath, fileName);
                     File.Move(oldFilePath, newFilePath);
@@ -115,6 +126,7 @@ namespace Renamer
         }
         public static void LeadZeros (string directoryPath, int length)
         {
+            
             history.Clear();
             try
             {
@@ -122,18 +134,29 @@ namespace Renamer
 
                 for (int i = 0; i < allPaths.Length; i++)
                 {
+                    bool numCheck = false;
                     string oldFilePath = allPaths[i];
                     string fileName = Path.GetFileName(allPaths[i]);
+                    foreach (char c in fileName)
+                    {
+                        if (char.IsDigit(c)) 
+                        {
+                            numCheck= true;
+                            break;
+                        }
+                    }
+                    if (numCheck)
+                    {
+                        string numString = GetNumberFromString(fileName, out int firstNum, out int lastNum);
+                        string newNumString = numString.PadLeft(length, '0');
+                        //fileName = fileName.Replace(numString, newNumString);
+                        fileName = fileName.Remove(firstNum, lastNum - firstNum);
+                        fileName = fileName.Insert(firstNum, newNumString);
 
-                    string numString =  GetNumberFromString(fileName, out int firstNum, out int lastNum);
-                    string newNumString = numString.PadLeft(length, '0');
-                    //fileName = fileName.Replace(numString, newNumString);
-                    fileName = fileName.Remove(firstNum, lastNum - firstNum);
-                    fileName = fileName.Insert(firstNum, newNumString);
-
-                    string newFilePath = Path.Combine(directoryPath, fileName);
-                    File.Move(oldFilePath, newFilePath);
-                    history.Add((oldFilePath, newFilePath));
+                        string newFilePath = Path.Combine(directoryPath, fileName);
+                        File.Move(oldFilePath, newFilePath);
+                        history.Add((oldFilePath, newFilePath));
+                    }
                 }
                 Console.WriteLine("Führende Nullen erfolgreich hinzugefügt.");
             }
@@ -141,6 +164,10 @@ namespace Renamer
             {
                 Console.WriteLine("Fehler beim Umbenennen der Dateien: " + ex.Message);
             }
+        }
+        public static void Enumerate(string directoryPath)
+        {
+            history.Clear();
         }
         public static void MoveNumbers(string directoryPath, string mode) 
         {
@@ -156,12 +183,15 @@ namespace Renamer
                     fileName = fileName.Replace("-", "");
                     string numString = GetNumberFromString(fileName, out int firstNum, out int lastNum);
                     //fileName = fileName.Replace(numString, newNumString);
+                    string text = "vorne";
 
                     fileName = fileName.Remove(firstNum, lastNum - firstNum);
+                    //fileName = fileName.Trim('-');
                     if(mode == "first") fileName = fileName.Insert(0, $"{numString}-");
 
                     if (mode == "last") 
                     {
+                        text = "hinten";
                         int position = 0;
                         for (int j = fileName.Length-1; j >= 0; j--)
                         {
@@ -174,10 +204,9 @@ namespace Renamer
                         fileName = fileName.Insert(position, $"-{numString}");
                     }
 
-
-
                     string newFilePath = Path.Combine(directoryPath, fileName);
                     File.Move(oldFilePath, newFilePath);
+                    Console.WriteLine($"Der Zahlenblock wurde erfolgreich nach {text} geschoben.");
                     history.Add((oldFilePath, newFilePath));
                 }
             }

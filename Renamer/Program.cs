@@ -49,9 +49,19 @@ namespace Renamer
                         Methods.DeleteSuffix(path, deletableSuffix);
                         break;
                     case "zero":
-                        Console.WriteLine("Add or delete singular zero?");
-                        string addOrDelete = Console.ReadLine();
-                        Methods.zeroFunction(path, addOrDelete);
+                        int amount = 0;
+                        Console.WriteLine("Add or delete?");
+                        string addOrDelete = Console.ReadLine().ToLower();
+                        if (addOrDelete == "delete")
+                        {
+                            Console.Write("Wie viele Nullen sollen gelöscht werden:");
+                            if (!int.TryParse(Console.ReadLine(), out int output)) 
+                            {
+                                Console.WriteLine("Keine zulässige Menge.");
+                                amount = output;
+                            }
+                        }
+                        Methods.zeroFunction(path, addOrDelete, amount);
                         break;
                     case "leadzer":
                         Console.Write("Padding (nur ganze Zahlen): ");
