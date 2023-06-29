@@ -74,9 +74,12 @@ namespace Renamer
                         break;
                     case "movnum":
                         Console.WriteLine("Soll ein Zahlenblock an den Anfang des Namens ('first') oder ans Ende ('last') geschoben werden: ");
-                            string mode = Console.ReadLine().ToLower();
-                            Methods.MoveNumbers(path, mode);
-                            break;
+                        string mode = Console.ReadLine().ToLower();
+                        Methods.MoveNumbers(path, mode);
+                        break;
+                    case "count":
+                        Methods.Count(path);
+                        break;
                     case "undo":
                         Methods.Undo();
                         break;
