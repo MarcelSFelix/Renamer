@@ -202,7 +202,6 @@ namespace Renamer
                         }
                         fileName = fileName.Insert(position, $"-{numString}");
                     }
-
                     string newFilePath = Path.Combine(directoryPath, fileName);
                     File.Move(oldFilePath, newFilePath);
                     Console.WriteLine($"Der Zahlenblock wurde erfolgreich nach {text} geschoben.");
