@@ -21,7 +21,7 @@ namespace Renamer
             "commands - Displays a list of all commands",
             "leadzer - Add leading Zeros",
             "undo - Undo last operation",
-            "stop - Stops the program"
+            "stop/exit - Stops the program"
         };
             Console.WriteLine("List of all commands");
             foreach (string command in commands)
