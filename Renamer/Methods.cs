@@ -87,7 +87,6 @@ namespace Renamer
             try
             {
                 string[] allPaths = Directory.GetFiles(directoryPath);
-                //Console.WriteLine(allPaths);
                 for (int i = 0; i < allPaths.Length; i++)
                 {
                     string oldFilePath = allPaths[i];
@@ -109,10 +108,7 @@ namespace Renamer
                             if (iterator > 1 && fileName[j] != '0') break;
                             if (iterator > amount) break;
                         }
-                        //if (fileName.StartsWith("0"))
-                        //{
-                        //    fileName = fileName.Substring(1);
-                        //}
+
                     }
                     string newFilePath = Path.Combine(directoryPath, fileName);
                     File.Move(oldFilePath, newFilePath);
@@ -150,7 +146,6 @@ namespace Renamer
                     {
                         string numString = GetNumberFromString(fileName, out int firstNum, out int lastNum);
                         string newNumString = numString.PadLeft(length, '0');
-                        //fileName = fileName.Replace(numString, newNumString);
                         fileName = fileName.Remove(firstNum, lastNum - firstNum);
                         fileName = fileName.Insert(firstNum, newNumString);
 
@@ -180,11 +175,9 @@ namespace Renamer
                     string fileName = Path.GetFileName(allPaths[i]);
                     fileName = fileName.Replace("-", "");
                     string numString = GetNumberFromString(fileName, out int firstNum, out int lastNum);
-                    //fileName = fileName.Replace(numString, newNumString);
                     string text = "vorne";
 
                     fileName = fileName.Remove(firstNum, lastNum - firstNum);
-                    //fileName = fileName.Trim('-');
                     if(mode == "first") fileName = fileName.Insert(0, $"{numString}-");
 
                     if (mode == "last") 
@@ -249,7 +242,7 @@ namespace Renamer
             }
             return numberString.Substring(firstNum, lastNum-firstNum);
 
-            //string test = getNumberFromString(fileName, out int firstNum, out int lastNum);
+
         }
 
         public static void DeletePrefix(string directoryPath, string prefixToDelete)
@@ -307,7 +300,7 @@ namespace Renamer
                 string[] allPaths = Directory.GetFiles(directoryPath);
                 int fileCount = allPaths.Length;
 
-                // Determine the number of digits in the file count
+
                 int numDigits = fileCount >= 10 ? (int)Math.Log10(fileCount) + 1 : 1;
 
                 for (int i = 0; i < fileCount; i++)
@@ -316,13 +309,12 @@ namespace Renamer
                     string extension = Path.GetExtension(allPaths[i]);
                     string oldFilePath = allPaths[i];
 
-                    // Remove existing numbers from the filename
+
                     string prefix = Regex.Replace(fileName, @"\d", string.Empty);
 
-                    // Increment the number based on the file count
                     int number = i + 1;
 
-                    // Build the new filename with padded zeros
+
                     string paddedNumber = number.ToString().PadLeft(numDigits, '0');
                     string newFileName = prefix + paddedNumber + extension;
                     string newFilePath = Path.Combine(directoryPath, newFileName);
