@@ -19,9 +19,10 @@ namespace Renamer
             "delpre - Delete prefix",
             "delsuf - Delete suffix",
             "commands - Displays a list of all commands",
-            "leadzer - Add leading Zeros",
+            "ledzer - Add leading Zeros",
             "undo - Undo last operation",
-            "stop - Stops the program"
+            "stop - Stops the program",
+            "path - Enter path to folder"
         };
             Console.WriteLine("List of all commands");
             foreach (string command in commands)
@@ -336,10 +337,6 @@ namespace Renamer
                 Console.WriteLine("Error renaming files: " + ex.Message);
             }
         }
-
-
-
-
     }
 }
 

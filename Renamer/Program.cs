@@ -63,7 +63,7 @@ namespace Renamer
                         }
                         Methods.zeroFunction(path, addOrDelete, amount);
                         break;
-                    case "leadzer":
+                    case "ledzer":
                         Console.Write("Padding (nur ganze Zahlen): ");
                         if(!int.TryParse(Console.ReadLine(), out int length))
                         {
@@ -86,6 +86,12 @@ namespace Renamer
                     case "exit":
                     case "stop":
                         go = false; 
+                        break;
+                    case "path":
+                        Console.Write("Bitte Pfad zum Ordner eingeben, welcher bearbeitet werden soll: ");
+                        path = Console.ReadLine();
+                        Environment.CurrentDirectory = path.Trim('"');
+                        Console.Title = Environment.CurrentDirectory;
                         break;
                     default:
                         Console.WriteLine("Unknown Command. Write 'commands' for more information.");
