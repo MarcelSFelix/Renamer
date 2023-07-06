@@ -89,8 +89,9 @@ namespace Renamer
                         break;
                     case "path":
                         Console.Write("Bitte Pfad zum Ordner eingeben, welcher bearbeitet werden soll: ");
-                        path = Console.ReadLine();
-                        Environment.CurrentDirectory = path.Trim('"');
+                        //path = Console.ReadLine();
+                        Environment.CurrentDirectory = Console.ReadLine().Trim('"');
+                        path = "";
                         Console.Title = Environment.CurrentDirectory;
                         break;
                     default:

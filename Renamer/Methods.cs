@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Renamer
 {
@@ -40,7 +41,7 @@ namespace Renamer
             try
             {
                 oldSuffix = oldSuffix.Replace(".", "");
-                string[] allPaths = Directory.GetFiles(directoryPath, $"*.{oldSuffix}");
+                string[] allPaths = Directory.GetFiles(Environment.CurrentDirectory, $"*.{oldSuffix}");
 
                 for (int i = 0; i < allPaths.Length; i++)
                 {
@@ -64,7 +65,7 @@ namespace Renamer
             history.Clear();
             try
             {
-                string[] allPaths = Directory.GetFiles(directoryPath);
+                string[] allPaths = Directory.GetFiles(Environment.CurrentDirectory);
 
                 for (int i = 0; i < allPaths.Length; i++)
                 {
@@ -127,7 +128,7 @@ namespace Renamer
             history.Clear();
             try
             {
-                string[] allPaths = Directory.GetFiles(directoryPath);
+                string[] allPaths = Directory.GetFiles(Environment.CurrentDirectory);
 
                 for (int i = 0; i < allPaths.Length; i++)
                 {
@@ -167,7 +168,7 @@ namespace Renamer
             history.Clear();
             try
             {
-                string[] allPaths = Directory.GetFiles(directoryPath);
+                string[] allPaths = Directory.GetFiles(Environment.CurrentDirectory);
 
                 for (int i = 0; i < allPaths.Length; i++)
                 {
@@ -196,9 +197,9 @@ namespace Renamer
                     }
                     string newFilePath = Path.Combine(directoryPath, fileName);
                     File.Move(oldFilePath, newFilePath);
-                    Console.WriteLine($"Der Zahlenblock wurde erfolgreich nach {text} geschoben.");
                     history.Add((oldFilePath, newFilePath));
                 }
+                Console.WriteLine($"Der Zahlenblock wurde erfolgreich nach {text} geschoben.");
             }
             catch(Exception ex)
             {
@@ -248,7 +249,7 @@ namespace Renamer
             history.Clear();
             try
             {
-                string[] allPaths = Directory.GetFiles(directoryPath);
+                string[] allPaths = Directory.GetFiles(Environment.CurrentDirectory);
 
                 foreach (string oldFilePath in allPaths)
                 {
@@ -273,7 +274,7 @@ namespace Renamer
             history.Clear();
             try
             {
-                string[] allPaths = Directory.GetFiles(directoryPath);
+                string[] allPaths = Directory.GetFiles(Environment.CurrentDirectory);
 
                 foreach (string oldFilePath in allPaths)
                 {
@@ -299,7 +300,7 @@ namespace Renamer
             history.Clear();
             try
             {
-                string[] allPaths = Directory.GetFiles(directoryPath);
+                string[] allPaths = Directory.GetFiles(Environment.CurrentDirectory);
                 int fileCount = allPaths.Length;
 
 
