@@ -1,8 +1,8 @@
 Guten Tag Herr Baldes,
-sie finden die .exe im Renamer Ordern unter "published exe"
+Sie finden die .exe im Renamer Ordern unter "published exe"
 
-Ich hoffe alle funktioniert
+Ich hoffe alles funktioniert
 
-Grüße
+Viele Grüße
 
 Die Gruppe
