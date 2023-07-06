@@ -14,15 +14,15 @@ namespace Renamer
         static List<(string oldP, string newP)> history = new List<(string oldP, string newP)>(); 
         public static void commands()
         {
-            string[] commands = { "", "cngpre - Change prefix",
-            "cngsuf - Change suffix",
-            "delpre - Delete prefix",
-            "delsuf - Delete suffix",
-            "commands - Displays a list of all commands",
-            "ledzer - Add leading Zeros",
-            "undo - Undo last operation",
-            "stop/exit - Stops the program",
-            "path - Enter path to folder"
+            string[] commands = { "", "cngpre - Prefix ändern",
+            "cngsuf - Suffix ändern",
+            "delpre - Prefix löschen",
+            "delsuf - Suffix löschen",
+            "commands - Alle Befehle anzeigen",
+            "ledzer - Führende Nullen hinzufügen",
+            "undo - Die letzte Aktion rückgängig machen",
+            "stop/exit - Das Programm beenden",
+            "path - Einen neuen Pfad zu einem Order angeben"
         };
             Console.WriteLine("List of all commands");
             foreach (string command in commands)
