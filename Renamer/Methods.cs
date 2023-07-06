@@ -168,6 +168,7 @@ namespace Renamer
             history.Clear();
             try
             {
+                string text = "";
                 string[] allPaths = Directory.GetFiles(Environment.CurrentDirectory);
 
                 for (int i = 0; i < allPaths.Length; i++)
@@ -176,7 +177,7 @@ namespace Renamer
                     string fileName = Path.GetFileName(allPaths[i]);
                     fileName = fileName.Replace("-", "");
                     string numString = GetNumberFromString(fileName, out int firstNum, out int lastNum);
-                    string text = "vorne";
+                    text = "vorne";
 
                     fileName = fileName.Remove(firstNum, lastNum - firstNum);
                     if(mode == "first") fileName = fileName.Insert(0, $"{numString}-");
