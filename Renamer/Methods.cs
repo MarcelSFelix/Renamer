@@ -18,9 +18,11 @@ namespace Renamer
             "cngsuf - Suffix ändern",
             "delpre - Prefix löschen",
             "delsuf - Suffix löschen",
-            "commands - Alle Befehle anzeigen",
             "ledzer - Führende Nullen hinzufügen",
+            "movnum - Den ersten Zahlenblock entweder an den Anfang oder das Ende des Dateinamens verschieben",
+            "count - Alle Dateien im Ordner durchnummerieren",
             "undo - Die letzte Aktion rückgängig machen",
+            "commands - Alle Befehle anzeigen",
             "stop/exit - Das Programm beenden",
             "path - Einen neuen Pfad zu einem Order angeben"
         };
@@ -108,7 +110,6 @@ namespace Renamer
                             if (iterator > 1 && fileName[j] != '0') break;
                             if (iterator > amount) break;
                         }
-
                     }
                     string newFilePath = Path.Combine(directoryPath, fileName);
                     File.Move(oldFilePath, newFilePath);
@@ -123,7 +124,6 @@ namespace Renamer
         }
         public static void LeadZeros (string directoryPath, int length)
         {
-            
             history.Clear();
             try
             {
@@ -241,12 +241,11 @@ namespace Renamer
                 }
             }
             return numberString.Substring(firstNum, lastNum-firstNum);
-
-
         }
 
         public static void DeletePrefix(string directoryPath, string prefixToDelete)
         {
+            history.Clear();
             try
             {
                 string[] allPaths = Directory.GetFiles(directoryPath);
@@ -258,6 +257,7 @@ namespace Renamer
                     string newFilePath = Path.Combine(directoryPath, newFileName);
 
                     File.Move(oldFilePath, newFilePath);
+                    history.Add((oldFilePath, newFilePath));
                 }
 
                 Console.WriteLine("Präfix wurde erfolgreich entfernt.");
@@ -270,6 +270,7 @@ namespace Renamer
 
         public static void DeleteSuffix(string directoryPath, string suffixToDelete)
         {
+            history.Clear();
             try
             {
                 string[] allPaths = Directory.GetFiles(directoryPath);
@@ -282,6 +283,7 @@ namespace Renamer
                     string newFilePath = Path.Combine(directoryPath, newFileName);
 
                     File.Move(oldFilePath, newFilePath);
+                    history.Add((oldFilePath, newFilePath));
                 }
 
                 Console.WriteLine("Suffix wurde erfolgreich entfernt.");
